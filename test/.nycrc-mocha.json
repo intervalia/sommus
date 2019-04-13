@@ -1,0 +1,33 @@
+{
+  "all": true,
+  "cache": false,
+  "check-coverage": false,
+  "eager": true,
+  "exclude": [
+    "src/**/*.karma.js",
+    "src/**/*.mocha.js"
+  ],
+  "extension": [],
+  "include": [
+    "src/**/*.js"
+  ],
+  "instrument": true,
+  "per-file": true,
+  "report-dir": "coverage/mocha",
+  "reporter": [
+    "lcov",
+    "text-summary"
+  ],
+  "require": [],
+
+  "branches": 50,
+  "functions": 50,
+  "lines": 50,
+  "statements": 50,
+  "watermarks": {
+    "lines": [50,80],
+    "functions": [50,80],
+    "branches": [50,80],
+    "statements": [50,80]
+  }
+}

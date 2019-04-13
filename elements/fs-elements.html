@@ -1,0 +1,33 @@
+<template element="fs-name">
+  <style>
+  .fs-name {
+    display: inline-block;
+    margin: 4px;
+    padding: 4px 8px;
+  }
+  </style>
+  <div class="fs-name">{{name}}</div>
+</template>
+
+<template element="fs-person">
+  <style>
+  .fs-person {
+    outline: 1px dashed #000;
+  }
+
+  .birth-date {
+    background-color: #005;
+    color: #FFA;
+  }
+  </style>
+  <div class="fs-person{{isLiving?' isLiving':''}}">
+    <fs-name data="this"></fs-name>
+    <div>{{address.street}}</div>
+    <div>{{address.city}}, {{address.state}} {{address.zip}}</div>
+    {{if birthDate}}<div class="birth-date"><label>Born on:</label> {{birthDate|formatDate:"long"}}</div>{{endif}}
+  </div>
+</template>
+
+<template element="fs-comment">
+<!-- {{name|uppercase}} lives at {{address.street}} in {{address.city}}, {{address.state}} {{address.zip}}. {{birthDate|formatDate:"long"}} -->
+</template>

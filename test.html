@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Template Tests</title>
+    <script>
+    console.time("runtime");
+    var exports = {};
+    </script>
+    <template tag="fst-person">
+{{if this}}
+      <div class="person-cell{{isLiving?' living':''}}">
+        <p class="name">{{name}}</p>
+  {{if address}}
+        <p class="address"><span>{{address.street}}</span> <span>{{address.city}}, {{address.state}} {{address.postal}}</span></p>
+  {{else}}
+        <p class="address"><span>{{lang.UNKNOWN_ADDRESS}}</span></p>
+  {{endif}}
+        <content></content>
+      </div>
+{{endif}}
+    </template>
+    <template tag="fst-couple">
+      <div class="couple-cell cell-{{index}}">
+        <p>Father {{index}}
+          <fst-person data="husband" class="person-male">Father</fst-person>
+        </p>
+        <p>Mother {{index}}
+          <fst-person data="wife" class="person-female">Mother</fst-person>
+        </p>
+      </div>
+    </template>
+    <script src="node_modules/moment/moment.js"></script>
+    <script src="assembly-lib.js"></script>
+    <script src="sommus.js"></script>
+    <script src="src/parser.js"></script>
+    <script src="src/sampleData.js"></script>
+    <script>
+      comp.defineTag("fst-person", function() {
+        return {
+          "attrs": {
+            "combine": ["taco", "bell"],
+            "exclude": ["none"],
+            "rename": [{"dog": "cat"}]
+          },
+          "preRender": function(data) {
+            data.name = data.name || lang.UNKNOWN_NAME;
+          }
+        }
+      });
+      comp.defineTag("fst-couple", function() {
+        return {
+          "preRender": function(data) {
+            data.husband = data.husband || {};
+            data.wife = data.wife || {};
+          }
+        }
+      });
+
+      comp.defineTag("mine", function() {
+        return {
+          "template": "<li>Info about ({{index}}): {{wife.name}} - {{wife.isLiving?'Living':'Deceased'}}</li>"
+        }
+      });
+      comp.defineTag("mine2", "<li>Info about: {{wife.name}}</li>");
+      comp.defineTag("mine3", {"template": "<li>Info about: {{wife.name}}</li>"});
+    </script>
+  </head>
+  <body>
+    <hr />
+    <!-- fst-couple couples - BEFORE -->
+    <h6>Couples</h6>
+    <fst-couple data="couples"></fst-couple>
+    <!-- fst-couple couples - AFTER -->
+    <hr />
+    <!-- fst-person husband - BEFORE -->
+    <h6>Husband</h6>
+    <fst-person data="husband"></fst-person>
+    <!-- fst-person husband - AFTER -->
+    <hr />
+    <!-- fst-person wife - BEFORE -->
+    <h6>Wife</h6>
+    <fst-person data="wife"></fst-person>
+    <!-- fst-person wife - AFTER -->
+    <hr />
+    <ul class="mine-shell">
+      <mine></mine>
+    </ul>
+  </body>
+  <script>
+    var el;
+    el = document.querySelector("fst-couple[data=couples]");
+    el.outerHTML = comp.render('fst-couple', couples);
+    el = document.querySelector("fst-person[data=husband]");
+    el.outerHTML = comp.render('fst-person', couples[0].husband);
+    el = document.querySelector("fst-person[data=wife]");
+    el.outerHTML = comp.render('fst-person', couples[0].wife);
+    el = document.querySelector("mine");
+    el.outerHTML = comp.render('mine', couples);
+    console.timeEnd("runtime");
+  </script>
+</html>

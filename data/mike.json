@@ -1,0 +1,45 @@
+{
+  "pageTitle": "Some Page",
+  "person": {
+    "name": "Mike Collins",
+    "address": {
+      "street": "561 S 1020 W",
+      "city": "Orem",
+      "state": "UT",
+      "zip": "84058-4909"
+    },
+    "phone": [
+      {
+        "type": "cell",
+        "number": "801-850-4677"
+      },
+      {
+        "type": "home",
+        "number": "801-224-4072"
+      }
+    ]
+  },
+  "father": [
+    {
+      "name": "Father's Name",
+      "isLiving": true,
+      "address": {
+        "street": "123 Southpoint Drive",
+        "city": "Hillsdale",
+        "state": "CT",
+        "zip": "00000"
+      },
+      "birthDate": "1/13/1964"
+    },
+    {
+      "name": "Other Father",
+      "address": {
+        "street": "300 South Blank St.",
+        "city": "Middleton",
+        "state": "OR",
+        "zip": "12345"
+      },
+      "birthDate": "5/19/1943"
+    }
+  ]
+}

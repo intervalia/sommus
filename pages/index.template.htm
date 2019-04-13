@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{pageTitle}}</title>
+    <style>
+      .person {
+        border: 1px solid #AAA;
+        padding: 5px;
+      }
+
+      .person__name {
+        color: #005;
+        font-weight: bold;
+      }
+
+      .person__address {
+        background-color: #FFE;
+        border: 1px solid #EED;
+        display:inline-block;
+        padding: 5px;
+      }
+
+      .fs-person {
+        font: 14px Tahoma;
+        margin-bottom: 10px;
+      }
+
+      .fs-name {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .birth__date label {
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="person">
+      <div class="person__name">Name: {{person.name}}</div>
+      <div class="person__address">
+        <div>{{person.address.street}}</div>
+        <div>
+          <span>{{person.address.city}}</span>
+          <span>{{person.address.state}}</span>
+          <span>{{person.address.zip}}</span>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    {{if father}}<fs-person data="father" class="tacos" data-test="father-info"></fs-father>{{endif}}
+    <hr />
+  </body>
+</html>
+{{if father}}<fs-comment data="father"></fs-comment>{{endif}}
